@@ -5,7 +5,8 @@ import edu.touro.mco152.bm.App;
 import java.io.File;
 
 /**
- *
+ * Creates a frame which will allow the user to select a location to save the
+ * benchmarked data to.
  */
 public class SelectFrame extends javax.swing.JFrame {
 

@@ -31,6 +31,11 @@ public final class Gui {
     public static JProgressBar progressBar = null;
     public static RunPanel runPanel = null;
 
+    /**
+     * Creates a ChartPanel for the GUI to display information related to
+     * operations like reading and writing for the current run.
+     * @return the ChartPanel instance to the MainFrame class.
+     */
     public static ChartPanel createChartPanel() {
 
         wSeries = new XYSeries("Writes");
@@ -115,6 +120,9 @@ public final class Gui {
         System.out.println(mark.toString());
     }
 
+    /**
+     * Resets/clears the test data including the series and status bar.
+     */
     public static void resetTestData() {
         wSeries.clear();
         rSeries.clear();
