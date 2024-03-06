@@ -5,7 +5,8 @@ import edu.touro.mco152.bm.App;
 import java.io.File;
 
 /**
- *
+ * SelectFrame provides a window for selecting directories from the directory structure.
+ * This class also contains logic for setting the first directory offered.
  */
 public class SelectFrame extends javax.swing.JFrame {
 
@@ -60,6 +61,13 @@ public class SelectFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles event passed by the file chooser.
+     * Determines whether the save attempt has been aborted or not, and handles appropriately.
+     * It then hides and then closes the current window.
+     *
+     * @param evt The event created by the file chooser
+     */
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
         System.out.println(evt);
@@ -77,6 +85,12 @@ public class SelectFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jFileChooser1ActionPerformed
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Sets the directory initially offered by the file chooser.
+     * Sets the file chooser field to the value of a passed file.
+     *
+     * @param file, the initial directory to be offered by the file chooser.
+     */
     void setInitDir(File file) {
         jFileChooser1.setSelectedFile(file);
     }
