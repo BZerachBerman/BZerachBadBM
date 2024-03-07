@@ -13,10 +13,8 @@ import java.awt.event.ComponentEvent;
 import java.io.Serial;
 
 /**
- * RunPanel is a panel containing all previously saved runs of jDiskMark, displayed as a table.
- * Contains functionality to extend the table by adding new rows for new rows, and for clearing the table.
- *
  * @author James
+ * Creates a panel containg all previously saved runs of jDiskMark.
  */
 public class RunPanel extends javax.swing.JPanel {
 
