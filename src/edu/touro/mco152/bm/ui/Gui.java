@@ -31,6 +31,14 @@ public final class Gui {
     public static JProgressBar progressBar = null;
     public static RunPanel runPanel = null;
 
+    /**
+     * Creates a new chart panel that adds a series of lines representing the Bandwidth write/read measurements per second.
+     * This method initializes the required XYSeries for writes and reads along with their average, maximum, and minimum values.
+     * It sets up the chart with the specified dataset and customizes its appearance and properties.
+     * The chart panel's preferred size is overridden to maintain a specific dimension.
+     *
+     * @return A ChartPanel object that holds the created chart.
+     */
     public static ChartPanel createChartPanel() {
 
         wSeries = new XYSeries("Writes");
@@ -93,6 +101,15 @@ public final class Gui {
         return chartPanel;
     }
 
+    /**
+     * Adds a new write mark to the series and updates the corresponding charts.
+     * This method adds the bandwidth and average data for a write mark to the respective series.
+     * If configured to show maximum and minimum values, it also updates the corresponding series.
+     * After updating the data, it refreshes the write metrics displayed on the main frame.
+     * Finally, it prints the details of the added mark to the console.
+     *
+     * @param mark The DiskMark object representing the write mark to be added.
+     */
     public static void addWriteMark(DiskMark mark) {
         wSeries.add(mark.getMarkNum(), mark.getBwMbSec());
         wAvgSeries.add(mark.getMarkNum(), mark.getCumAvg());
@@ -104,6 +121,15 @@ public final class Gui {
         System.out.println(mark.toString());
     }
 
+    /**
+     * Adds a new read mark to the series and updates the corresponding charts.
+     * This method adds the bandwidth and average data for a read mark to the respective series.
+     * If configured to show maximum and minimum values, it also updates the corresponding series.
+     * After updating the data, it refreshes the read metrics displayed on the main frame.
+     * Finally, it prints the details of the added mark to the console.
+     *
+     * @param mark The DiskMark object representing the read mark to be added.
+     */
     public static void addReadMark(DiskMark mark) {
         rSeries.add(mark.getMarkNum(), mark.getBwMbSec());
         rAvgSeries.add(mark.getMarkNum(), mark.getCumAvg());
