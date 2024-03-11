@@ -5,7 +5,11 @@ import edu.touro.mco152.bm.App;
 import java.io.File;
 
 /**
- *
+ * The `SelectFrame` class represents a Swing JFrame for selecting a directory location.
+ * <p>
+ * This frame provides a user interface to choose a directory using a JFileChooser.
+ * It initializes with the user's home directory and handles actions like approving or
+ * canceling the directory selection.
  */
 public class SelectFrame extends javax.swing.JFrame {
 
@@ -40,11 +44,9 @@ public class SelectFrame extends javax.swing.JFrame {
         setTitle("Choose Location");
 
         jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
-        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser1ActionPerformed(evt);
-            }
-        });
+
+        // replaced with lambda
+        jFileChooser1.addActionListener(evt -> jFileChooser1ActionPerformed(evt));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,8 +79,14 @@ public class SelectFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jFileChooser1ActionPerformed
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Sets the initial directory for file selection in a JFileChooser.
+     * This method updates the selected file in the associated JFileChooser instance
+     * to the specified File object.
+     *
+     * @param file The File representing the initial directory to be set.
+     */
     void setInitDir(File file) {
         jFileChooser1.setSelectedFile(file);
     }
-
 }

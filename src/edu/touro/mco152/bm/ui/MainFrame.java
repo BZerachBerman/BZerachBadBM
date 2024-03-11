@@ -179,7 +179,8 @@ public final class MainFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         resetButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        orderComboBox = new javax.swing.JComboBox<BlockSequence>();
+        // Explicit type argument BlockSequence replaced with <>
+        orderComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         wMinLabel = new javax.swing.JLabel();
         wMaxLabel = new javax.swing.JLabel();
@@ -821,6 +822,9 @@ public final class MainFrame extends javax.swing.JFrame {
         return totalTxProgBar;
     }
 
+    /**
+     * Clears the content of the message text area.
+     */
     public void clearMessages() {
         msgTextArea.setText("");
     }

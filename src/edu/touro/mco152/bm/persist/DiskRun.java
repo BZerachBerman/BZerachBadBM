@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Stores information about the results of a single disk
- * write/read test
+ * Stores disk performance test results, including configuration details and metrics.
+ * Utilizes Java Persistence API (JPA) for database storage.
  */
 @Entity
 @Table(name = "DiskRun")

@@ -1,5 +1,4 @@
 /**
-
  This package encompasses classes responsible for the user interface functionality.
  Each class within creates distinct components of the GUI and offers methods to adjust their behavior.
  The UI architecture is divided into several modules:
