@@ -10,6 +10,7 @@ import java.io.File;
  * This frame provides a user interface to choose a directory using a JFileChooser.
  * It initializes with the user's home directory and handles actions like approving or
  * canceling the directory selection.
+
  */
 public class SelectFrame extends javax.swing.JFrame {
 

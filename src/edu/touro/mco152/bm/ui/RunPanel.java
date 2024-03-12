@@ -13,8 +13,8 @@ import java.awt.event.ComponentEvent;
 import java.io.Serial;
 
 /**
- * @author James
- * Creates a panel containg all previously saved runs of jDiskMark.
+ * Creates a panel to display all the stored data from the previous benchmarks run
+ * until user clears the memory.
  */
 public class RunPanel extends javax.swing.JPanel {
 

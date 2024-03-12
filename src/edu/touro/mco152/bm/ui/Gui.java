@@ -32,12 +32,10 @@ public final class Gui {
     public static RunPanel runPanel = null;
 
     /**
-     * Creates a new chart panel that adds a series of lines representing the Bandwidth write/read measurements per second.
+     * Creates a ChartPanel for the GUI to display information related to
+     * operations like reading and writing for the current run.
+     * @return the ChartPanel instance to the MainFrame class.
      * This method initializes the required XYSeries for writes and reads along with their average, maximum, and minimum values.
-     * It sets up the chart with the specified dataset and customizes its appearance and properties.
-     * The chart panel's preferred size is overridden to maintain a specific dimension.
-     *
-     * @return A ChartPanel object that holds the created chart.
      */
     public static ChartPanel createChartPanel() {
 
@@ -141,6 +139,9 @@ public final class Gui {
         System.out.println(mark.toString());
     }
 
+    /**
+     * Resets/clears the test data including the series and status bar.
+     */
     public static void resetTestData() {
         wSeries.clear();
         rSeries.clear();

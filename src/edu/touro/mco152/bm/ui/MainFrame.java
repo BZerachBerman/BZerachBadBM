@@ -132,7 +132,7 @@ public final class MainFrame extends javax.swing.JFrame {
             modeStr = "write";
         } else if (App.readTest && !App.writeTest) {
             modeStr = "read";
-        } else if (App.readTest && App.writeTest) {
+        } else if (App.readTest) {              //!App.writeTest was always true because of line 133
             modeStr = "write&read";
         } else {
             msg("WARNING: invalid mode detected");
@@ -711,8 +711,13 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void modeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeComboActionPerformed
         String modeStr = (String) modeCombo.getSelectedItem();
-        App.readTest = modeStr.contains("read");
-        App.writeTest = modeStr.contains("write");
+        //makes sure that modestr is not null. If it is, send a warning message
+        if (modeStr != null) {
+            App.readTest = modeStr.contains("read");
+            App.writeTest = modeStr.contains("write");
+        } else {
+            msg("WARNING: invalid mode detected");
+        }
     }//GEN-LAST:event_modeComboActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
