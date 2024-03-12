@@ -42,6 +42,26 @@ public class DiskWorker extends SwingWorker<Boolean, DiskMark> {
     // Record any success or failure status returned from SwingWorker (might be us or super)
     Boolean lastStatus = null;  // so far unknown
 
+    /**
+
+     The doInBackground method, part of SwingWorker, facilitates continuous execution of complex operations on a separate thread,
+     preventing program slowdowns. Invoked by SwingWorker's execute() method, doInBackground manages the following tasks:
+     Logging information about the ongoing benchmark.
+     Writing messages to the MainFrame through the app class.
+     Additionally, this method performs the following operations in sequence:
+     Retrieves the user-selected number of blocks to execute, crucial for benchmark tracking. The number of blocks may vary
+     based on whether the user opted for both read and write operations in a single benchmarking session. This count determines
+     the total iterations required for computing data to generate the benchmark graph.
+     Depending on the user's selection of read, write, or combined operations, subsequent stages vary:
+     A loop iterates based on the chosen number of blocks, tracking benchmark durations per iteration. At the end of each iteration,
+     the total time and write count are recorded and sent to the GUI via SwingWorker's publish() method, subsequently displayed by the
+     GUI class.
+     A nested loop calculates the total number of units and bytes written within the current iteration, updating the progress
+     via SwingWorker's setProgress() method. This entire process repeats if the user selected both read and write operations.
+     @return
+     @throws Exception
+     */
+
     @Override
     protected Boolean doInBackground() throws Exception {
 
@@ -305,6 +325,12 @@ public class DiskWorker extends SwingWorker<Boolean, DiskMark> {
     }
 
 
+
+    /**
+     Invoked when the doInBackground method of SwingWorker completes successfully or is aborted.
+     This method, called by Swing, grants access to the get method within its scope, retrieving the computed
+     result of the doInBackground method. Upon invocation, the computation within doInBackground is halted.
+     */
     @Override
     protected void done() {
         // Obtain final status, might from doInBackground ret value, or SwingWorker error
@@ -321,6 +347,10 @@ public class DiskWorker extends SwingWorker<Boolean, DiskMark> {
         Gui.mainFrame.adjustSensitivity();
     }
 
+    /**
+     Retrieves the most recent status of the game.
+     @return The application's current status.
+     */
     public Boolean getLastStatus() {
         return lastStatus;
     }

@@ -27,10 +27,6 @@ public class DiskMark {
         return df.format(getBwMbSec());
     }
 
-    String getMinAsString() {
-        return df.format(getCumMin());
-    }
-
     String getMaxAsString() {
         return df.format(getCumMax());
     }

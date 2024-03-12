@@ -35,6 +35,7 @@ public final class Gui {
      * Creates a ChartPanel for the GUI to display information related to
      * operations like reading and writing for the current run.
      * @return the ChartPanel instance to the MainFrame class.
+     * This method initializes the required XYSeries for writes and reads along with their average, maximum, and minimum values.
      */
     public static ChartPanel createChartPanel() {
 
@@ -98,6 +99,15 @@ public final class Gui {
         return chartPanel;
     }
 
+    /**
+     * Adds a new write mark to the series and updates the corresponding charts.
+     * This method adds the bandwidth and average data for a write mark to the respective series.
+     * If configured to show maximum and minimum values, it also updates the corresponding series.
+     * After updating the data, it refreshes the write metrics displayed on the main frame.
+     * Finally, it prints the details of the added mark to the console.
+     *
+     * @param mark The DiskMark object representing the write mark to be added.
+     */
     public static void addWriteMark(DiskMark mark) {
         wSeries.add(mark.getMarkNum(), mark.getBwMbSec());
         wAvgSeries.add(mark.getMarkNum(), mark.getCumAvg());
@@ -109,6 +119,15 @@ public final class Gui {
         System.out.println(mark.toString());
     }
 
+    /**
+     * Adds a new read mark to the series and updates the corresponding charts.
+     * This method adds the bandwidth and average data for a read mark to the respective series.
+     * If configured to show maximum and minimum values, it also updates the corresponding series.
+     * After updating the data, it refreshes the read metrics displayed on the main frame.
+     * Finally, it prints the details of the added mark to the console.
+     *
+     * @param mark The DiskMark object representing the read mark to be added.
+     */
     public static void addReadMark(DiskMark mark) {
         rSeries.add(mark.getMarkNum(), mark.getBwMbSec());
         rAvgSeries.add(mark.getMarkNum(), mark.getCumAvg());
