@@ -45,11 +45,10 @@ public class App {
     public static int numOfMarks = 25;      // desired number of marks
     public static int numOfBlocks = 32;     // desired number of blocks
     public static int blockSizeKb = 512;    // size of a block in KBs
-    public static DiskWorker worker = null;
+    public static SwingUI UserInterface;
     public static int nextMarkNumber = 1;   // number of the next mark
     public static double wMax = -1, wMin = -1, wAvg = -1;
     public static double rMax = -1, rMin = -1, rAvg = -1;
-
     /**
      * @param args the command line arguments
      */
@@ -236,11 +235,11 @@ public class App {
     }
 
     public static void cancelBenchmark() {
-        if (worker == null) {
+        if (UserInterface == null) {
             msg("worker is null abort...");
             return;
         }
-        worker.cancel(true);
+        UserInterface.cancelBenchmark(true);
     }
 
     public static void startBenchmark() {
@@ -262,9 +261,10 @@ public class App {
         state = State.DISK_TEST_STATE;
         Gui.mainFrame.adjustSensitivity();
 
-        //4. set up disk worker thread and its event handlers
-        worker = new DiskWorker();
-        worker.addPropertyChangeListener((final PropertyChangeEvent event) -> {
+        //4. set up SwingUI thread and its event handlers
+        UserInterface = new SwingUI();
+        UserInterface.setDiskWorker(new DiskWorker(UserInterface));
+        UserInterface.addPropertyChangeListener((final PropertyChangeEvent event) -> {
             switch (event.getPropertyName()) {
                 case "progress":
                     int value = (Integer) event.getNewValue();
@@ -285,7 +285,7 @@ public class App {
         });
 
         //5. start the Swing worker thread
-        worker.execute();
+        UserInterface.execute();
     }
 
     /**
