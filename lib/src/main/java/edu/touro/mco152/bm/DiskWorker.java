@@ -61,7 +61,7 @@ public class DiskWorker  {
      @return
      */
 
-    protected Boolean startBenchmark() throws Exception{
+    public Boolean startBenchmark() throws Exception{
 
         /*
           We 'got here' because: 1: End-user clicked 'Start' on the benchmark UI,
@@ -215,14 +215,7 @@ public class DiskWorker  {
 
         // try renaming all files to clear catch
         if (App.readTest && App.writeTest && !worker.getIsCancelled()) {
-            JOptionPane.showMessageDialog(Gui.mainFrame,
-                    """
-                            For valid READ measurements please clear the disk cache by
-                            using the included RAMMap.exe or flushmem.exe utilities.
-                            Removable drives can be disconnected and reconnected.
-                            For system drives use the WRITE and READ operations\s
-                            independantly by doing a cold reboot after the WRITE""",
-                    "Clear Disk Cache Now", JOptionPane.PLAIN_MESSAGE);
+            worker.showErrorMessage();
         }
 
         // Same as above, just for Read operations instead of Writes.
@@ -304,4 +297,6 @@ public class DiskWorker  {
         App.nextMarkNumber += App.numOfMarks;
         return true;
     }
+
+
 }

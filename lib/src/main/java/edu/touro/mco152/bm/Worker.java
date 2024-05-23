@@ -4,6 +4,7 @@ package edu.touro.mco152.bm;
  * Worker is an abstraction for a SwingWorker that requires some SwingWorker-like functionality for BadBM.
  */
 public interface Worker {
+    void showErrorMessage();
     /**
      * abstract version of SwingWorker's execute() as applicable in BadBM. Allows for non-GUI implementation.
      */

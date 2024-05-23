@@ -49,6 +49,7 @@ public class App {
     public static int nextMarkNumber = 1;   // number of the next mark
     public static double wMax = -1, wMin = -1, wAvg = -1;
     public static double rMax = -1, rMin = -1, rAvg = -1;
+
     /**
      * @param args the command line arguments
      */
@@ -62,14 +63,16 @@ public class App {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
             /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
              * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
              */
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                     javax.swing.UnsupportedLookAndFeelException ex) {
                 java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             //</editor-fold>
@@ -190,6 +193,7 @@ public class App {
             Logger.getLogger(SelectFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Gets data about the configuration and returns it in String form.
      *
@@ -213,7 +217,7 @@ public class App {
     }
 
     /**
-     *  populate run table with saved runs from db
+     * populate run table with saved runs from db
      */
     public static void loadSavedRuns() {
         Gui.runPanel.clearTable();
@@ -293,12 +297,13 @@ public class App {
     /**
      * Set up data area for use by temp benchmark files. Will try to use configured area,
      * if not available, will use opsys temp area
+     *
      * @return true if successful
      */
     private static boolean setupDataArea() {
         // Check if can write to configured location
         if (!locationDir.canWrite()) {
-            msg("Selected directory '" + locationDir +"' can not be written to. Trying Temp area");
+            msg("Selected directory '" + locationDir + "' can not be written to. Trying Temp area");
 
             try {
                 locationDir = Files.createTempDirectory("badBM").toFile();
@@ -380,7 +385,6 @@ public class App {
 
     /**
      * Reverts BM data to default starting values
-     *
      */
     static public void resetTestData() {
         nextMarkNumber = 1;

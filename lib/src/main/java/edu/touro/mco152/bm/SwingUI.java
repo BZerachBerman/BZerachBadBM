@@ -18,12 +18,25 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
     }
 
     @Override
+    public void showErrorMessage() {
+        JOptionPane.showMessageDialog(Gui.mainFrame,
+                """
+                        For valid READ measurements please clear the disk cache by
+                        using the included RAMMap.exe or flushmem.exe utilities.
+                        Removable drives can be disconnected and reconnected.
+                        For system drives use the WRITE and READ operations\s
+                        independantly by doing a cold reboot after the WRITE""",
+                "Clear Disk Cache Now", JOptionPane.PLAIN_MESSAGE);
+    }
+
+    @Override
     public void startBenchmark() {
         execute();
     }
 
     /**
      * SwingUI's doInBackground is called by its hidden execute method.
+     *
      * @return was DiskWorker's startBenchmark() successful.
      * @throws Exception
      */
@@ -46,15 +59,16 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
     public void doPublish(DiskMark Mark) {
         publish(Mark);
     }
+
     @Override
     public boolean cancelBenchmark(boolean b) {
         return cancel(b);
     }
 
     /**
-     Invoked when the doInBackground method of SwingWorker completes successfully or is aborted.
-     This method, called by Swing, grants access to the get method within its scope, retrieving the computed
-     result of the doInBackground method. Upon invocation, the computation within doInBackground is halted.
+     * Invoked when the doInBackground method of SwingWorker completes successfully or is aborted.
+     * This method, called by Swing, grants access to the get method within its scope, retrieving the computed
+     * result of the doInBackground method. Upon invocation, the computation within doInBackground is halted.
      */
     @Override
     protected void done() {
@@ -73,8 +87,9 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
     }
 
     /**
-     Retrieves the most recent status of the game.
-     @return The application's current status.
+     * Retrieves the most recent status of the game.
+     *
+     * @return The application's current status.
      */
     public Boolean getLastStatus() {
         return lastStatus;
@@ -84,6 +99,7 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
      * Process a list of 'chunks' that have been processed, ie that our thread has previously
      * published to Swing. For my info, watch Professor Cohen's video -
      * Module_6_RefactorBadBM Swing_DiskWorker_Tutorial.mp4
+     *
      * @param markList a list of DiskMark objects reflecting some completed benchmarks
      */
     @Override
