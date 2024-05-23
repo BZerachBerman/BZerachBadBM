@@ -1,11 +1,8 @@
 package edu.touro.mco152.bm;
 
-import edu.touro.mco152.bm.ui.Gui;
-import edu.touro.mco152.bm.ui.MainFrame;
-
-import java.io.File;
-import java.util.Properties;
-
+/**
+ * Soon to be replaced non-GUI version of Worker
+ */
 public class NonSwingUI implements Worker {
     DiskWorker diskWorker;
     int progress;
@@ -22,7 +19,7 @@ public class NonSwingUI implements Worker {
     @Override
     public void startBenchmark() {
         try {
-        diskWorker.startBenchmark();
+        diskWorker.runBenchmark();
     }
         catch (Exception e) {throw new RuntimeException();}//not sure how to handle this. Caused by rAccFile.readFully().
     }

@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,7 +60,7 @@ public class DiskWorker  {
      @return
      */
 
-    public Boolean startBenchmark() throws Exception{
+    public Boolean runBenchmark() throws Exception{
 
         /*
           We 'got here' because: 1: End-user clicked 'Start' on the benchmark UI,

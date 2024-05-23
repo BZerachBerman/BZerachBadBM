@@ -288,7 +288,7 @@ public class App {
             }
         });
 
-        //5. start the Swing worker thread
+        //5. start the SwingUI thread
 
         UserInterface.startBenchmark();
 

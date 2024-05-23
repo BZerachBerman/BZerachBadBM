@@ -42,7 +42,7 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
      */
     @Override
     protected Boolean doInBackground() throws Exception {
-        return diskWorker.startBenchmark();
+        return diskWorker.runBenchmark();
     }
 
     @Override
