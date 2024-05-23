@@ -32,9 +32,8 @@ import static edu.touro.mco152.bm.DiskMark.MarkType.WRITE;
  * This class only knows how to do 'read' or 'write' disk benchmarks. It is instantiated by the
  * startBenchmark() method.
  * <p>
- * To be Swing compliant this class extends SwingWorker and declares that its final return (when
- * doInBackground() is finished) is of type Boolean, and declares that intermediate results are communicated to
- * Swing using an instance of the DiskMark class.
+ * To be Swing compatible this class declares that its final return (when
+ * startBenchmark() is finished) is of type Boolean.
  */
 
 public class DiskWorker  {
@@ -46,8 +45,8 @@ public class DiskWorker  {
 
     /**
 
-     The doInBackground method, part of SwingWorker, facilitates continuous execution of complex operations on a separate thread,
-     preventing program slowdowns. Invoked by SwingWorker's execute() method, doInBackground manages the following tasks:
+     The startBenchmark method facilitates continuous execution of complex operations on a separate thread,
+     preventing program slowdowns. Invoked by a Worker, startBenchmark manages the following tasks:
      Logging information about the ongoing benchmark.
      Writing messages to the MainFrame through the app class.
      Additionally, this method performs the following operations in sequence:
@@ -56,22 +55,20 @@ public class DiskWorker  {
      the total iterations required for computing data to generate the benchmark graph.
      Depending on the user's selection of read, write, or combined operations, subsequent stages vary:
      A loop iterates based on the chosen number of blocks, tracking benchmark durations per iteration. At the end of each iteration,
-     the total time and write count are recorded and sent to the GUI via SwingWorker's publish() method, subsequently displayed by the
-     GUI class.
+     the total time and write count are recorded and published using Worker's doPublish() method.
      A nested loop calculates the total number of units and bytes written within the current iteration, updating the progress
-     via SwingWorker's setProgress() method. This entire process repeats if the user selected both read and write operations.
+     via Worker's setTheProgress() method. This entire process repeats if the user selected both read and write operations.
      @return
-     @throws Exception
      */
 
-    protected Boolean startBenchmark() throws Exception {
+    protected Boolean startBenchmark() throws Exception{
 
         /*
           We 'got here' because: 1: End-user clicked 'Start' on the benchmark UI,
           which triggered the start-benchmark event associated with the App::startBenchmark()
-          method.  2: startBenchmark() then instantiated a DiskWorker, and called
-          its (super class's) execute() method, causing Swing to eventually
-          call this doInBackground() method.
+          method.  2: startBenchmark() then instantiated a Worker, and called
+          its execute() method, causing Swing to eventually
+          call its doInBackground() method, which called DiskWorker's startBenchmark() method.
          */
         Logger.getLogger(App.class.getName()).log(Level.INFO, "*** New worker thread started ***");
         msg("Running readTest " + App.readTest + "   writeTest " + App.writeTest);
@@ -188,7 +185,7 @@ public class DiskWorker  {
                 App.updateMetrics(wMark);
 
                 /*
-                  Let the GUI know the interim result described by the current Mark
+                  Let the UI know the interim result described by the current Mark
                  */
                 worker.doPublish(wMark);
 

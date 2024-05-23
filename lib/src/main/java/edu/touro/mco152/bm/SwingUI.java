@@ -13,6 +13,20 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
     // Record any success or failure status returned from SwingWorker (might be us or super)
     Boolean lastStatus = null;  // so far unknown
 
+    public void setDiskWorker(DiskWorker diskWorker) {
+        this.diskWorker = diskWorker;
+    }
+
+    @Override
+    public void startBenchmark() {
+        execute();
+    }
+
+    /**
+     * SwingUI's doInBackground is called by its hidden execute method.
+     * @return was DiskWorker's startBenchmark() successful.
+     * @throws Exception
+     */
     @Override
     protected Boolean doInBackground() throws Exception {
         return diskWorker.startBenchmark();
@@ -32,11 +46,11 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
     public void doPublish(DiskMark Mark) {
         publish(Mark);
     }
-
     @Override
     public boolean cancelBenchmark(boolean b) {
         return cancel(b);
     }
+
     /**
      Invoked when the doInBackground method of SwingWorker completes successfully or is aborted.
      This method, called by Swing, grants access to the get method within its scope, retrieving the computed
@@ -81,9 +95,5 @@ public class SwingUI extends SwingWorker<Boolean, DiskMark> implements Worker {
                 Gui.addReadMark(dm);
             }
         });
-    }
-
-    public void setDiskWorker(DiskWorker diskWorker) {
-        this.diskWorker = diskWorker;
     }
 }

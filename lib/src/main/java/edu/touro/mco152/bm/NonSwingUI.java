@@ -54,6 +54,15 @@ public class NonSwingUI implements Worker {
         }
     }
     private boolean isCancelled;
+
+    @Override
+    public void startBenchmark() {
+        try {
+        diskWorker.startBenchmark();
+    }
+        catch (Exception e) {}//not sure how to handle this. Caused by rAccFile.readFully().
+    }
+
     @Override
     public boolean getIsCancelled() {
         return isCancelled;
@@ -70,7 +79,7 @@ public class NonSwingUI implements Worker {
     }
 
     @Override
-    public boolean cancelBenchmark(boolean b) {
+    public boolean cancelBenchmark(boolean mayInterruptIfRunning) {
         isCancelled = true;
         return true;
     }
