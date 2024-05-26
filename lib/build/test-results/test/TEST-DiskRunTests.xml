@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DiskRunTests" tests="4" skipped="0" failures="1" errors="0" timestamp="2024-05-26T15:23:57" hostname="GLORP" time="0.061">
+  <properties/>
+  <testcase name="setAndGetBlockSize_Normal_ReturnsInt()" classname="DiskRunTests" time="0.037"/>
+  <testcase name="getStartTimeString_Normal_ReturnsString()" classname="DiskRunTests" time="0.003"/>
+  <testcase name="setBlockSize_SpeedTest_GoesFast()" classname="DiskRunTests" time="0.002"/>
+  <testcase name="setBlockSize_ForceError_HandlesWell()" classname="DiskRunTests" time="0.014">
+    <failure message="org.opentest4j.AssertionFailedError: Expected java.lang.Exception to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected java.lang.Exception to be thrown, but nothing was thrown.
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at app//DiskRunTests.setBlockSize_ForceError_HandlesWell(DiskRunTests.java:55)
+	at java.base@17.0.10/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base@17.0.10/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.10/java.util.ArrayList.forEach(ArrayList.java:1511)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

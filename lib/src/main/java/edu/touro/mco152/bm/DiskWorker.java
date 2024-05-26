@@ -57,7 +57,7 @@ public class DiskWorker  {
      the total time and write count are recorded and published using Worker's doPublish() method.
      A nested loop calculates the total number of units and bytes written within the current iteration, updating the progress
      via Worker's setTheProgress() method. This entire process repeats if the user selected both read and write operations.
-     @return
+     @return Boolean successfully ran
      */
 
     public Boolean runBenchmark() throws Exception{

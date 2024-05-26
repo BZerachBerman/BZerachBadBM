@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="UtilTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-05-26T15:24:02" hostname="GLORP" time="0.044">
+  <properties/>
+  <testcase name="[1] 2.147483647E9" classname="UtilTests" time="0.025"/>
+  <testcase name="[2] -2.147483648E9" classname="UtilTests" time="0.001"/>
+  <testcase name="[3] 50.0" classname="UtilTests" time="0.001"/>
+  <testcase name="[4] 0.0" classname="UtilTests" time="0.001"/>
+  <testcase name="[5] -20.0" classname="UtilTests" time="0.001"/>
+  <testcase name="[6] 3.141592653589793" classname="UtilTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
