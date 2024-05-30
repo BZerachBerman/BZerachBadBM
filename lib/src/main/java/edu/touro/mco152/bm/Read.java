@@ -8,23 +8,23 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
-
-
 import static edu.touro.mco152.bm.App.*;
 import static edu.touro.mco152.bm.DiskMark.MarkType.READ;
 
+/**
+ * Read implements the BenchMark interface by running a read benchmark.
+ */
 public class Read implements BenchMark {
-
-    DiskMark rMark;//object used to pass progress to UI
-    Worker worker;
+    int blockSize;
     DiskRun.BlockSequence blockSequence;
     int numOfMarks;
     int numOfBlocks;
 
-    public Read(int numOfMarks, int numOfBlocks, int blockSizeKb, DiskRun.BlockSequence blockSequence) {
+    public Read(int numOfMarks, int numOfBlocks, int blockSize, DiskRun.BlockSequence blockSequence) {
         this.numOfMarks = numOfMarks;
         this.numOfBlocks = numOfBlocks;
         this.blockSequence = blockSequence;
+        this.blockSize = blockSize;
     }
     public boolean runBenchMark(Worker worker) {
         // declare local vars formerly in DiskWorker
@@ -38,7 +38,7 @@ public class Read implements BenchMark {
         int unitsTotal = wUnitsTotal + rUnitsTotal;
         float percentComplete;
 
-        int blockSize = blockSizeKb*KILOBYTE;
+        blockSize = blockSizeKb*KILOBYTE;
         byte [] blockArr = new byte [blockSize];
         for (int b=0; b<blockArr.length; b++) {
             if (b%2==0) {
@@ -65,7 +65,7 @@ public class Read implements BenchMark {
                 testFile = new File(dataDir.getAbsolutePath()
                         + File.separator + "testdata" + m + ".jdm");
             }
-            rMark = new DiskMark(READ);  // starting to keep track of a new benchmark
+            DiskMark rMark = new DiskMark(READ);  // starting to keep track of a new benchmark
             rMark.setMarkNum(m);
             long startTime = System.nanoTime();
             long totalBytesReadInMark = 0;

@@ -16,12 +16,16 @@ import static edu.touro.mco152.bm.App.*;
 import static edu.touro.mco152.bm.App.msg;
 import static edu.touro.mco152.bm.DiskMark.MarkType.WRITE;
 
+/**
+ * Write implements the BenchMark interface by running a write benchmark.
+ */
 public class Write implements BenchMark {
     DiskMark wMark;//object used to pass progress to UI
     Worker worker;
     int numOfMarks;
     int numOfBlocks;
     DiskRun.BlockSequence blockSequence;
+
     public Write(int numOfMarks, int numOfBlocks, int blockSizeKb, DiskRun.BlockSequence blockSequence) {
         this.numOfMarks = numOfMarks;
         this.numOfBlocks = numOfBlocks;

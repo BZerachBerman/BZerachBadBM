@@ -25,11 +25,9 @@ import static edu.touro.mco152.bm.App.*;
  */
 
 public class DiskWorker  {
-    ReadWriteExecutor invoker;
     Worker worker;
     public DiskWorker(Worker worker) {
         this.worker = worker;
-        this.invoker = new ReadWriteExecutor();
     }
 
 
@@ -90,6 +88,7 @@ public class DiskWorker  {
           The GUI allows a Write, Read, or both types of BMs to be started. They are done serially.
          */
         if (App.writeTest) {
+            ReadWriteExecutor invoker = new ReadWriteExecutor();
             invoker.setBenchmark(new Write(App.numOfMarks, App.numOfBlocks, App.blockSizeKb, App.blockSequence));
             invoker.runBenchMark(worker);
         }
@@ -107,6 +106,7 @@ public class DiskWorker  {
 
         // Same as above, just for Read operations instead of Writes.
         if (App.readTest) {
+            ReadWriteExecutor invoker = new ReadWriteExecutor();
             invoker.setBenchmark(new Read(App.numOfMarks, App.numOfBlocks, App.blockSizeKb, App.blockSequence));
             invoker.runBenchMark(worker);
         }

@@ -1,14 +1,17 @@
 package edu.touro.mco152.bm;
 
-class ReadWriteExecutor {
+/**
+ * ReadWriteExecutor is an invoker that allows DiskWorker to follow the Command Pattern
+ * by passing in a BenchMarking class and then calling ReadWriteExecutor's runBenchMark.
+ */
+public class ReadWriteExecutor {
     BenchMark benchMark;
 
     public void setBenchmark(BenchMark benchMark) {
         this.benchMark = benchMark;
     }
 
-
-    public void runBenchMark(Worker worker) {
-        benchMark.runBenchMark(worker);
+    public boolean runBenchMark(Worker worker) {
+        return benchMark.runBenchMark(worker);
     }
 }
