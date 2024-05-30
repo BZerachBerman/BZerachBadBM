@@ -11,6 +11,9 @@ import java.util.Properties;
 import static edu.touro.mco152.bm.persist.DiskRun.BlockSequence.SEQUENTIAL;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests my library of Tests
+ */
 public class CommandTests {
     NonSwingUI worker = new NonSwingUI();
     ReadWriteExecutor readWriteExecutor;
@@ -27,24 +30,15 @@ public class CommandTests {
 
     @Test
     void testRead() {
-        Read read = new Read(numOfMarks, numOfBlocks, numOfMarks, blockSequence);
-        readWriteExecutor.setBenchmark(read);
+        readWriteExecutor.setBenchmark(new Read(numOfMarks, numOfBlocks, blockSize, blockSequence));
         assertTrue(readWriteExecutor.runBenchMark(worker));
     }
+
     @Test
     void testWrite() {
-        Write write = new Write(numOfMarks, numOfBlocks, numOfMarks, blockSequence);
-        readWriteExecutor.setBenchmark(write);
+        readWriteExecutor.setBenchmark(new Write(numOfMarks, numOfBlocks, blockSize, blockSequence));
         assertTrue(readWriteExecutor.runBenchMark(worker));
     }
-
-
-
-
-
-
-
-
 
     void setupDefaultAsPerProperties() {
         /// Do the minimum of what  App.init() would do to allow to run.
