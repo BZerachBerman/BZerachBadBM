@@ -1,8 +1,5 @@
 package edu.touro.mco152.bm;
 
-/**
- * Soon to be replaced non-GUI version of Worker
- */
 public class NonSwingUI implements Worker {
     DiskWorker diskWorker;
     int progress;
@@ -38,9 +35,7 @@ public class NonSwingUI implements Worker {
         return progress;
     }
     @Override
-    public void doPublish(DiskMark Mark) {
-
-    }
+    public void doPublish(DiskMark Mark) {}
 
     @Override
     public boolean cancelBenchmark(boolean mayInterruptIfRunning) {
